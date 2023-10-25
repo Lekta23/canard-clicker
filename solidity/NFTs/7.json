@@ -1,0 +1,9 @@
+{
+    "name" : "Plongée",
+
+    "description": "Le canard part à la chasse sous-marine pour nourrir sa famille entière : +10",
+
+    "image":"https://ipfs.io/ipfs/bafkreihuhv2bjqub25z4zivk6txj5pwvfeqorjn7slkkcyv35askzarepm",
+    
+    "speed" : 10
+}
