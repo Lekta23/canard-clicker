@@ -17,7 +17,7 @@ contract coincoinNTF_tmp is ERC1155 {
 
 
 
-    constructor() ERC1155("https://ipfs.io/ipfs/bafybeia5m3nte4pprldq2wusdrrvd4zzbpvdipkbpgqdlthbthvzkrf7mm/{id}.json") {
+    constructor() ERC1155("https://ipfs.io/ipfs/bafybeibixbzd6lxmcrgulslbbriuq4azckcp5jchss7uo2qpm6ykwxwgwm/{id}.json") {
         _mint(msg.sender, wheat, 1, "");
         _mint(msg.sender, pond, 1, "");
         _mint(msg.sender, fox, 1, "");
@@ -31,7 +31,7 @@ contract coincoinNTF_tmp is ERC1155 {
     function uri(uint256 _tokenid) override public pure returns (string memory) {
         return string(
             abi.encodePacked(
-                "https://ipfs.io/ipfs/bafybeia5m3nte4pprldq2wusdrrvd4zzbpvdipkbpgqdlthbthvzkrf7mm/",
+                "https://ipfs.io/ipfs/bafybeibixbzd6lxmcrgulslbbriuq4azckcp5jchss7uo2qpm6ykwxwgwm/",
                 Strings.toString(_tokenid),".json"
             )
         );
