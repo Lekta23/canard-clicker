@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
@@ -18,6 +18,10 @@ function App() {
         >
           Learn React
         </a>
+
+        <h1 className="text-3xl font-bold underline">
+          Ta gueule, c'est moi qui parle
+        </h1>
       </header>
     </div>
   );
