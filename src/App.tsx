@@ -1,12 +1,31 @@
-import React, { useState } from "react";
 import logo from "./assets/Canard.png";
 import wallpaper from "./assets/Background.png";
 import "./App.css";
 import ButtonConnexion from "./composents/button_connexion";
 
+import { useState, useEffect } from "react";
 function App() {
   const [isLogoEnlarged, setIsLogoEnlarged] = useState(false);
+  const [haveMetamask, sethaveMetamask] = useState(true);
+  const [accountAddress, setAccountAddress] = useState("");
+  const [isConnected, setIsConnected] = useState(false);
 
+  const { ethereum } = window;
+
+  const connectWallet = async () => {
+    try {
+      if (!ethereum) {
+        sethaveMetamask(false);
+      }
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setAccountAddress(accounts[0]);
+      setIsConnected(true);
+    } catch (error) {
+      setIsConnected(false);
+    }
+  };
   const toggleLogoSize = () => {
     setIsLogoEnlarged(true); // Activer l'agrandissement
 
@@ -38,6 +57,7 @@ function App() {
           Clique sur le canard !
         </h1>
         <ButtonConnexion
+          onClick={connectWallet}
           label="Connexion test"
           className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded absolute top-0 right-0 m-4"
         />
