@@ -12,14 +12,31 @@ function App() {
   const [accountAddress, setAccountAddress] = useState("");
   const [isConnected, setIsConnected] = useState(false);
 
-  const { ethereum } = window;
+  useEffect(() => {
+    const checkMetamask = async () => {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({
+            method: "eth_accounts",
+          });
+          if (accounts.length > 0) {
+            setAccountAddress(accounts[0]);
+            setIsConnected(true);
+          }
+        } catch (error) {
+          setIsConnected(false);
+        }
+      } else {
+        sethaveMetamask(false);
+      }
+    };
+
+    checkMetamask();
+  }, []);
 
   const connectWallet = async () => {
     try {
-      if (!ethereum) {
-        sethaveMetamask(false);
-      }
-      const accounts = await ethereum.request({
+      const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
       setAccountAddress(accounts[0]);
@@ -64,13 +81,27 @@ function App() {
         <h1 className="text-3xl font-bold shadow-2xl">
           Clique sur le canard !
         </h1>
-        <ButtonConnexion
-          onClick={connectWallet}
-          label="Connexion test"
-          className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded absolute top-0 right-0 m-4"
-        />
+        {haveMetamask ? (
+          isConnected ? (
+            <div className="bg-white text-black text-sm py-2 px-4 rounded absolute top-0 right-0 m-4"
+              onClick={connectWallet}
+            >{accountAddress}</div>
+          ) : (
+            <ButtonConnexion
+              label="Connect Wallet"
+              className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded absolute top-0 right-0 m-4"
+              onClick={connectWallet}
+            />
+          )
+        ) : (
+          <div className="bg-white text-black text-sm py-2 px-4 rounded absolute top-0 right-0 m-4"
+            onClick={connectWallet}
+          >
+            MetaMask not detected.
+          </div>
+        )}
       </header>
-    </div>
+    </div >
   );
 }
 
