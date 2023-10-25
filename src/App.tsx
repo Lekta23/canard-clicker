@@ -2,8 +2,10 @@ import logo from "./assets/Canard.png";
 import wallpaper from "./assets/Background.png";
 import "./App.css";
 import ButtonConnexion from "./composents/button_connexion";
+import canardCoincoin from "./assets/coincoin.mp3";
 
 import { useState, useEffect } from "react";
+
 function App() {
   const [isLogoEnlarged, setIsLogoEnlarged] = useState(false);
   const [haveMetamask, sethaveMetamask] = useState(true);
@@ -26,6 +28,9 @@ function App() {
       setIsConnected(false);
     }
   };
+
+  let audio = new Audio(canardCoincoin);
+
   const toggleLogoSize = () => {
     setIsLogoEnlarged(true); // Activer l'agrandissement
 
@@ -33,6 +38,9 @@ function App() {
     setTimeout(() => {
       setIsLogoEnlarged(false);
     }, 500);
+
+    // Jouer le fichier audio
+    audio.play();
   };
 
   const backgroundStyle = {
