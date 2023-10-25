@@ -1,0 +1,9 @@
+{
+    "name" : "Canneton",
+
+    "description": "Le canneton aide à trouver du CoinCoin : +2",
+
+    "image":"https://ipfs.io/ipfs/bafkreigojnbi6tsosu6dre7okxyztv7n4uxf7kh3czo6c2t4qtp7gd344u",
+    
+    "speed" : 2
+}

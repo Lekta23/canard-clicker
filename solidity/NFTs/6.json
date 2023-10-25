@@ -1,0 +1,9 @@
+{
+    "name" : "Vol",
+
+    "description": "Grâce à l'apprentissage du vol, le canard peut effectuer ses recherches dans des contrées lointaines : +5",
+
+    "image":"https://ipfs.io/ipfs/bafybeifyp7exyx6vedoubxxul2q7auay2i6s5upfes7ig6b2oqaqa3op2i",
+    
+    "speed" : 5
+}

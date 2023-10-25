@@ -1,0 +1,9 @@
+{
+    "name" : "Renard",
+
+    "description": "Le canard se fait attaquer par un renard",
+
+    "image":"https://ipfs.io/ipfs/bafkreigihyblpr5c5fw4ivymncagraazjnwokr4dt66jnzg4ijiaa45yem",
+    
+    "speed" : -2
+}
