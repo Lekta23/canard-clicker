@@ -6,13 +6,26 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract coincoinNTF_tmp is ERC1155 {
     uint256 public constant wheat = 1;
-    uint256 public constant egg = 2;
+    uint256 public constant pond = 2;
+    uint256 public constant fox = 3;
+    uint256 public constant duckling = 4;
+    uint256 public constant eggs = 5;
+    uint256 public constant flight = 6;
+    uint256 public constant dive = 7;
+    uint256 public constant coincoin = 8;
+
+
 
 
     constructor() ERC1155("https://ipfs.io/ipfs/bafybeia5m3nte4pprldq2wusdrrvd4zzbpvdipkbpgqdlthbthvzkrf7mm/{id}.json") {
         _mint(msg.sender, wheat, 1, "");
-        _mint(msg.sender, egg, 1, "");
-        
+        _mint(msg.sender, pond, 1, "");
+        _mint(msg.sender, fox, 1, "");
+        _mint(msg.sender, duckling, 1, "");
+        _mint(msg.sender, eggs, 1, "");
+        _mint(msg.sender, flight, 1, "");
+        _mint(msg.sender, dive, 1, "");
+        _mint(msg.sender, coincoin, 1, "");        
     }
 
     function uri(uint256 _tokenid) override public pure returns (string memory) {
