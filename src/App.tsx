@@ -18,6 +18,8 @@ function App() {
   const [web3, setWeb3] = useState<any>();
   const [account, setAccount] = useState<any>();
   const [isMutted, setIsMutted] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
+  const [multiplicateur, setMultiplicateur] = useState(20);
 
   useEffect(() => {
     const checkMetamask = async () => {
@@ -81,6 +83,7 @@ function App() {
     if (!isMutted) {
       audio.play();
     }
+    setClickCount(clickCount + multiplicateur);
   };
 
   const backgroundStyle = {
@@ -134,6 +137,9 @@ function App() {
             MetaMask not detected.
           </div>
         )}
+        <p className="text-white absolute bottom-4 left-1/2 transform -translate-x-1/2">
+          Click Count: {clickCount}
+        </p>
       </header>
     </div>
   );
