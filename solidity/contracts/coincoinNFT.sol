@@ -4,7 +4,7 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract coincoinNTF_tmp is ERC1155 {
+contract coincoinNFT_tmp is ERC1155 {
     uint256 internal constant wheat = 1;
     uint256 internal constant pond = 2;
     uint256 internal constant fox = 3;

@@ -7,6 +7,7 @@ import canardCoincoin from "./assets/coincoin.mp3";
 import { useState, useEffect } from "react";
 import CoinCoin from "./artifacts/contracts/coincoinNTF.sol/coincoinNTF_tmp.json";
 import getWeb3 from "./web3";
+import Inventory from "./composents/Inventory";
 
 function App() {
   const [isLogoEnlarged, setIsLogoEnlarged] = useState(false);
@@ -19,6 +20,8 @@ function App() {
   const [account, setAccount] = useState<any>();
   const [methods, setMethods] = useState<any>();
   const [isMutted, setIsMutted] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
+  const [multiplicateur, setMultiplicateur] = useState(20);
 
   useEffect(() => {
     const checkMetamask = async () => {
@@ -95,7 +98,7 @@ function App() {
     if (!isMutted) {
       audio.play();
     }
-
+    setClickCount(clickCount + multiplicateur);
   };
 
   const backgroundStyle = {
@@ -116,10 +119,14 @@ function App() {
     <div style={backgroundStyle}>
       <header className="App-header">
         <img src={logo} style={logoStyle} alt="logo" onClick={toggleLogoSize} />
-        <h1 className="text-3xl font-bold shadow-2xl">
-          Clique sur le canard !
+        <h1 className="text-3xl font-bold shadow-2xl absolute top-5 left-1/2 transform -translate-x-1/2">
+          {" "}
+          Click on Ducky !
         </h1>
-        <button onClick={() => setIsMutted(prevState => !prevState)}>
+        <button
+          className="bg-white text-black text-sm py-1 px-2 rounded inline-block absolute bottom-4 left-4"
+          onClick={() => setIsMutted((prevState) => !prevState)}
+        >
           {isMutted ? "Unmute" : "Mute"}
         </button>
         {haveMetamask ? (
@@ -145,6 +152,10 @@ function App() {
             MetaMask not detected.
           </div>
         )}
+        <Inventory />
+        <p className="text-white absolute bottom-4 left-1/2 transform -translate-x-1/2">
+          Click Count: {clickCount}
+        </p>
       </header>
     </div>
   );
