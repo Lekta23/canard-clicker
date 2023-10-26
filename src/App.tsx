@@ -22,9 +22,11 @@ function App() {
   const [isMutted, setIsMutted] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [multiplicateur, setMultiplicateur] = useState(0.1);
+  const [balance, setBalance] = useState(0);
 
   const resetClickCount = () => {
     setClickCount(clickCount - 1000);
+    mintCoinCoin(1000);
   };
 
   useEffect(() => {
@@ -37,11 +39,11 @@ function App() {
           if (accounts.length > 0) {
             setAccountAddress(accounts[0]);
             setIsConnected(true);
-            console.log(accounts[0]);
+            //console.log(accounts[0]);
             const web3 = await getWeb3();
             const account = await web3.eth.getAccounts();
-            const instance = new web3.eth.Contract(CoinCoin.abi, "0xc705d5305595755a69a48367c84935Dd41c90E1f");
-            console.log(account);
+            const instance = new web3.eth.Contract(CoinCoin.abi, "0xca29ea22a539872fA3cB9052aA8626858a66E303");
+            //console.log(account);
             setAccount(account);
             setWeb3(web3);
             setContract(instance);
@@ -60,22 +62,9 @@ function App() {
 
     checkMetamask();
   }, []);
-  console.log(contract, account, web3, userAddress);
-  async function getBalance() {
-    const result = await methods.balanceOf(account[0], 8).call();
-    console.log(`Balance of CoinCoin: ${result}`);
-  }
-  console.log(getBalance());
-  async function mintCoinCoin(amount: number) {
-    const result = await methods.mintCoinCoin(account[0], amount).send({from: account[0]});
-  }
-  console.log(account)
+  //console.log(contract, account, web3, userAddress);
   //mintCoinCoin(100);
   // console.log(methods.price().call());
-  async function getMintPrice() {
-    const result = await methods.price().call();
-    console.log(result);
-  }
   //getMintPrice();
   const connectWallet = async () => {
     try {
@@ -106,6 +95,23 @@ function App() {
     setClickCount(clickCount + multiplicateur);
   };
 
+  
+  async function getBalance(id: number) {
+    const result = await methods.balanceOf(account[0], id).call();
+    console.log(account[0], id)
+    console.log(`Balance of ${id}: ${result}`);
+    return result;
+  }
+  
+  async function getMintPrice() {
+    const result = await methods.price().call();
+    console.log(result);
+  }
+
+  async function mintCoinCoin(amount: number) {
+    const result = await methods.mintCoinCoin(account[0], amount).send({from: account[0]});
+  }
+
   const backgroundStyle = {
     backgroundImage: `url(${wallpaper})`,
     backgroundSize: "cover",
@@ -126,7 +132,7 @@ function App() {
         <img src={logo} style={logoStyle} alt="logo" onClick={toggleLogoSize} />
         <h1 className="text-3xl font-bold shadow-2xl absolute top-5 left-1/2 transform -translate-x-1/2">
           {" "}
-          Click on Ducky !
+          Click on Ducky ! {balance}
         </h1>
         <button
           className="bg-white text-black text-sm py-1 px-2 rounded inline-block absolute bottom-4 left-4"
@@ -158,7 +164,7 @@ function App() {
           </div>
         )}
         <Inventory />
-        {clickCount >= 1000 ? (
+        {clickCount >= 1 ? (
           <button
             onClick={resetClickCount}
             type="button"

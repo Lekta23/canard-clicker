@@ -10,6 +10,7 @@ async function main() {
   const coincoinNTF = await ethers.deployContract("coincoinNFT_tmp");
   await coincoinNTF.waitForDeployment();
   await mintInitialNFTs(coincoinNTF);
+  await coincoinNTF.mintCoinCoin("0xF9e16bF9F8daAee6C744C9a57DC0612346447564", 100)
 
   // No need to use .deployed() here
 
