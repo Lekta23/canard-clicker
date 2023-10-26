@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {
     items: any[]; // Assuming each item object has a 'name' and 'speed' property
-    total:
+    total: number;
 };
 
 const itemImages: { [key: string]: string } = {
