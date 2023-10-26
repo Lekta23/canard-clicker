@@ -21,7 +21,11 @@ function App() {
   const [methods, setMethods] = useState<any>();
   const [isMutted, setIsMutted] = useState(false);
   const [clickCount, setClickCount] = useState(0);
-  const [multiplicateur, setMultiplicateur] = useState(20);
+  const [multiplicateur, setMultiplicateur] = useState(0.1);
+
+  const resetClickCount = () => {
+    setClickCount(clickCount - 1000);
+  };
 
   useEffect(() => {
     const checkMetamask = async () => {
@@ -154,8 +158,27 @@ function App() {
           </div>
         )}
         <Inventory />
+        {clickCount >= 1000 ? (
+          <button
+            onClick={resetClickCount}
+            type="button"
+            className="text-black bg-orange-400 hover:bg-orange-500 font-bold rounded-lg text-lg px-12 py-2.5 text-center inline-flex items-center absolute m-4 mr-2 mb-2 bottom-16"
+          >
+            Mint
+          </button>
+        ) : (
+          <button
+            // onClick={console.log('Mint')}
+            type="button"
+            className="text-black bg-gray-400 font-bold rounded-lg text-lg px-12 py-2.5 text-center inline-flex items-center absolute m-4 mr-2 mb-2 bottom-16"
+          >
+            Mint
+          </button>
+        )
+        }
+
         <p className="text-white absolute bottom-4 left-1/2 transform -translate-x-1/2">
-          Click Count: {clickCount}
+          Click Count: {Math.floor(clickCount * 10) / 10}
         </p>
       </header>
     </div>
