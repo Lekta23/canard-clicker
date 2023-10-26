@@ -7,6 +7,7 @@ import canardCoincoin from "./assets/coincoin.mp3";
 import { useState, useEffect } from "react";
 import CoinCoin from "./artifacts/contracts/coincoinNTF.sol/coincoinNTF_tmp.json";
 import getWeb3 from "./web3";
+import Inventory from "./composents/Inventory";
 
 function App() {
   const [isLogoEnlarged, setIsLogoEnlarged] = useState(false);
@@ -137,6 +138,7 @@ function App() {
             MetaMask not detected.
           </div>
         )}
+        <Inventory />
         <p className="text-white absolute bottom-4 left-1/2 transform -translate-x-1/2">
           Click Count: {clickCount}
         </p>
