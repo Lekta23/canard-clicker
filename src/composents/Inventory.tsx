@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {
     items: any[]; // Assuming each item object has a 'name' and 'speed' property
-    total: number;
+    total:
 };
 
 const itemImages: { [key: string]: string } = {
@@ -41,7 +41,7 @@ export default function Inventory({ items }: Props) {
                         <img src={itemImages[itemName]} alt={itemName} style={{ width: '100px', height: '100px' }} />
                         <p>{itemName}</p>
                         <p>Count: {itemCounts[itemName]}</p>
-                        <p>Speed: {Math.floor(itemSpeeds[itemName])}</p>
+                        <p>Speed: {Math.floor((itemSpeeds[itemName]) * 10) / 10}</p>
                     </div>
                 ))}
             </div>
