@@ -5,12 +5,18 @@ import ButtonConnexion from "./composents/button_connexion";
 import canardCoincoin from "./assets/coincoin.mp3";
 
 import { useState, useEffect } from "react";
+import CoinCoin from "./artifacts/contracts/coincoinNTF.sol/coincoinNTF_tmp.json";
+import getWeb3 from "./web3";
 
 function App() {
   const [isLogoEnlarged, setIsLogoEnlarged] = useState(false);
   const [haveMetamask, sethaveMetamask] = useState(true);
   const [accountAddress, setAccountAddress] = useState("");
   const [isConnected, setIsConnected] = useState(false);
+  const [userAddress, setUserAddress] = useState<any>();
+  const [contract, setContract] = useState<any>();
+  const [web3, setWeb3] = useState<any>();
+  const [account, setAccount] = useState<any>();
 
   useEffect(() => {
     const checkMetamask = async () => {
@@ -22,6 +28,17 @@ function App() {
           if (accounts.length > 0) {
             setAccountAddress(accounts[0]);
             setIsConnected(true);
+            console.log(accounts[0]);
+            const web3 = await getWeb3();
+            const account = await web3.eth.getAccounts();
+            const instance = new web3.eth.Contract(CoinCoin.abi, "");
+            console.log(account);
+            setAccount(account);
+            setWeb3(web3);
+            setContract(instance);
+            setUserAddress(
+              account[0].slice(0, 6) + "..." + account[0].slice(38, 42)
+            );
           }
         } catch (error) {
           setIsConnected(false);
@@ -33,6 +50,7 @@ function App() {
 
     checkMetamask();
   }, []);
+  console.log(contract, account, web3, userAddress);
 
   const connectWallet = async () => {
     try {
@@ -83,9 +101,12 @@ function App() {
         </h1>
         {haveMetamask ? (
           isConnected ? (
-            <div className="bg-white text-black text-sm py-2 px-4 rounded absolute top-0 right-0 m-4"
+            <div
+              className="bg-white text-black text-sm py-2 px-4 rounded absolute top-0 right-0 m-4"
               onClick={connectWallet}
-            >{accountAddress}</div>
+            >
+              {userAddress}
+            </div>
           ) : (
             <ButtonConnexion
               label="Connect Wallet"
@@ -94,14 +115,15 @@ function App() {
             />
           )
         ) : (
-          <div className="bg-white text-black text-sm py-2 px-4 rounded absolute top-0 right-0 m-4"
+          <div
+            className="bg-white text-black text-sm py-2 px-4 rounded absolute top-0 right-0 m-4"
             onClick={connectWallet}
           >
             MetaMask not detected.
           </div>
         )}
       </header>
-    </div >
+    </div>
   );
 }
 
