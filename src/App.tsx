@@ -17,6 +17,7 @@ function App() {
   const [contract, setContract] = useState<any>();
   const [web3, setWeb3] = useState<any>();
   const [account, setAccount] = useState<any>();
+  const [methods, setMethods] = useState<any>();
   const [isMutted, setIsMutted] = useState(false);
 
   useEffect(() => {
@@ -32,11 +33,12 @@ function App() {
             console.log(accounts[0]);
             const web3 = await getWeb3();
             const account = await web3.eth.getAccounts();
-            const instance = new web3.eth.Contract(CoinCoin.abi, "");
+            const instance = new web3.eth.Contract(CoinCoin.abi, "0x5FbDB2315678afecb367f032d93F642f64180aa3");
             console.log(account);
             setAccount(account);
             setWeb3(web3);
             setContract(instance);
+            setMethods(instance.methods);
             setUserAddress(
               account[0].slice(0, 6) + "..." + account[0].slice(38, 42)
             );
@@ -52,7 +54,21 @@ function App() {
     checkMetamask();
   }, []);
   console.log(contract, account, web3, userAddress);
-
+  /*async function getBalance() {
+    const result = await contract.methods.balanceOf().call();
+  
+    const resultInEther = web3.utils.fromWei(result, "ether");
+  
+    console.log(`Balance in wei: ${result}`);
+  
+    console.log(`Balance in ether: ${resultInEther}`);
+  }
+  console.log(getBalance());*/
+  async function getMintPrice() {
+    const result = await methods.price().call();
+    console.log(result);
+  }
+  //getMintPrice();
   const connectWallet = async () => {
     try {
       const accounts = await window.ethereum.request({
