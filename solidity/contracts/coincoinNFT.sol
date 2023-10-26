@@ -39,6 +39,10 @@ contract coincoinNFT_tmp is ERC1155 {
         _mint(to, id, 1, "");
     }
 
+    function getContractAddress() public view returns (address) {
+        return address(this);
+    }
+
     // Mint with coincoin 
     // Check si Plus de 1000 CoinCoin
     // Si oui, on mintRandom et burn 1000 CoinCoin

@@ -25,7 +25,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "hardhat": "cd solidity && npx hardhat node",
-    "hardhat:deploy": "cd solidity && npx hardhat run scripts/deploy.ts"
+    "hardhat:deploy": "cd solidity && npx hardhat run scripts/deploy.ts --network hardhat",
+    "hardhat:deploy:sepolia": "cd solidity && npx hardhat run scripts/deploy.ts --network sepolia"
 
   },
   "eslintConfig": {

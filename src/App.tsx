@@ -5,7 +5,7 @@ import ButtonConnexion from "./composents/button_connexion";
 import canardCoincoin from "./assets/coincoin.mp3";
 
 import { useState, useEffect } from "react";
-import CoinCoin from "./artifacts/contracts/coincoinNTF.sol/coincoinNTF_tmp.json";
+import CoinCoin from "./artifacts/contracts/coincoinNFT.sol/coincoinNFT_tmp.json";
 import getWeb3 from "./web3";
 import Inventory from "./composents/Inventory";
 
@@ -36,7 +36,7 @@ function App() {
             console.log(accounts[0]);
             const web3 = await getWeb3();
             const account = await web3.eth.getAccounts();
-            const instance = new web3.eth.Contract(CoinCoin.abi, "0x5FbDB2315678afecb367f032d93F642f64180aa3");
+            const instance = new web3.eth.Contract(CoinCoin.abi, "0xc705d5305595755a69a48367c84935Dd41c90E1f");
             console.log(account);
             setAccount(account);
             setWeb3(web3);
@@ -57,16 +57,17 @@ function App() {
     checkMetamask();
   }, []);
   console.log(contract, account, web3, userAddress);
-  /*async function getBalance() {
-    const result = await contract.methods.balanceOf().call();
-  
-    const resultInEther = web3.utils.fromWei(result, "ether");
-  
-    console.log(`Balance in wei: ${result}`);
-  
-    console.log(`Balance in ether: ${resultInEther}`);
+  async function getBalance() {
+    const result = await methods.balanceOf(account[0], 8).call();
+    console.log(`Balance of CoinCoin: ${result}`);
   }
-  console.log(getBalance());*/
+  console.log(getBalance());
+  async function mintCoinCoin(amount: number) {
+    const result = await methods.mintCoinCoin(account[0], amount).send({from: account[0]});
+  }
+  console.log(account)
+  //mintCoinCoin(100);
+  // console.log(methods.price().call());
   async function getMintPrice() {
     const result = await methods.price().call();
     console.log(result);
