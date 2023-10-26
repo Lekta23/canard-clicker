@@ -17,6 +17,7 @@ function App() {
   const [contract, setContract] = useState<any>();
   const [web3, setWeb3] = useState<any>();
   const [account, setAccount] = useState<any>();
+  const [isMutted, setIsMutted] = useState(false);
 
   useEffect(() => {
     const checkMetamask = async () => {
@@ -75,7 +76,10 @@ function App() {
     }, 500);
 
     // Jouer le fichier audio
-    audio.play();
+    if (!isMutted) {
+      audio.play();
+    }
+
   };
 
   const backgroundStyle = {
@@ -99,6 +103,9 @@ function App() {
         <h1 className="text-3xl font-bold shadow-2xl">
           Clique sur le canard !
         </h1>
+        <button onClick={() => setIsMutted(prevState => !prevState)}>
+          {isMutted ? "Unmute" : "Mute"}
+        </button>
         {haveMetamask ? (
           isConnected ? (
             <div
