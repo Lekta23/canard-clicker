@@ -106,13 +106,13 @@ function App() {
         <img src={logo} style={logoStyle} alt="logo" onClick={toggleLogoSize} />
         <h1 className="text-3xl font-bold shadow-2xl absolute top-5 left-1/2 transform -translate-x-1/2">
           {" "}
-          Clique sur le canard !
+          Click on Ducky !
         </h1>
         <button
           className="bg-white text-black text-sm py-1 px-2 rounded inline-block absolute bottom-4 left-4"
           onClick={() => setIsMutted((prevState) => !prevState)}
         >
-          {isMutted ? "Activer le son" : "Couper le son"}
+          {isMutted ? "Unmute" : "Mute"}
         </button>
         {haveMetamask ? (
           isConnected ? (
