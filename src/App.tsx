@@ -37,6 +37,8 @@ function App() {
             setAccount(account);
             setWeb3(web3);
             setContract(instance);
+            console.log(await web3.eth.getBalance(account[0]));
+
             setUserAddress(
               account[0].slice(0, 6) + "..." + account[0].slice(38, 42)
             );
@@ -79,7 +81,6 @@ function App() {
     if (!isMutted) {
       audio.play();
     }
-
   };
 
   const backgroundStyle = {
@@ -103,7 +104,7 @@ function App() {
         <h1 className="text-3xl font-bold shadow-2xl">
           Clique sur le canard !
         </h1>
-        <button onClick={() => setIsMutted(prevState => !prevState)}>
+        <button onClick={() => setIsMutted((prevState) => !prevState)}>
           {isMutted ? "Unmute" : "Mute"}
         </button>
         {haveMetamask ? (
