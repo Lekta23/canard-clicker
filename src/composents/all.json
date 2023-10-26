@@ -1,0 +1,43 @@
+[{
+"name" : "Blé",
+    "description": "Le canard mange et se prépare à chercher du CoinCoin : +0.2",
+    "image":"https://ipfs.io/ipfs/bafkreieou73gwj7xqh3piyt7xcjean6wi4yp6pen3vagdwz7tmlek4uxvu",
+    "speed" : 0.2
+},
+{
+    "name" : "Mare",
+    "description": "Le canard découvre une nouvelle zone de recherche",
+    "image":"https://ipfs.io/ipfs/bafkreie5sgvor7nwwhx7dwg6atfdpb7lwbqmhdyff7yh4mpy6ept6o7hpm",
+    "speed" : 1
+},
+{
+    "name" : "Renard",
+    "description": "Le canard se fait attaquer par un renard",
+    "image":"https://ipfs.io/ipfs/bafkreigihyblpr5c5fw4ivymncagraazjnwokr4dt66jnzg4ijiaa45yem",
+    "speed" : -2
+},
+{
+    "name" : "Caneton",
+    "description": "Le canneton aide à trouver du CoinCoin : +2",
+    "image":"https://ipfs.io/ipfs/bafkreigojnbi6tsosu6dre7okxyztv7n4uxf7kh3czo6c2t4qtp7gd344u",
+    "speed" : 2
+},
+{
+    "name" : "Oeufs",
+    "description": "Motivé par la naissance prochaine de son cannetons, il accélère le rythme de ses recherche de CoinCoin",
+    "image":"https://ipfs.io/ipfs/bafkreia7goo4xdvwpnb5yqikfgvwefs472dv33lf7hse6gobwlllmvtgc4",
+    "speed" : 0.5
+},
+{
+    "name" : "Vol",
+    "description": "Grâce à l'apprentissage du vol, le canard peut effectuer ses recherches dans des contrées lointaines : +5",
+    "image":"https://ipfs.io/ipfs/bafybeifyp7exyx6vedoubxxul2q7auay2i6s5upfes7ig6b2oqaqa3op2i",
+    "speed" : 5
+},
+{
+    "name" : "Plongée",
+    "description": "Le canard part à la chasse sous-marine pour nourrir sa famille entière : +10",
+    "image":"https://ipfs.io/ipfs/bafkreihuhv2bjqub25z4zivk6txj5pwvfeqorjn7slkkcyv35askzarepm",  
+    "speed" : 10
+}
+]

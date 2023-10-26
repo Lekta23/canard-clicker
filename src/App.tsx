@@ -3,13 +3,22 @@ import wallpaper from "./assets/Background.png";
 import "./App.css";
 import ButtonConnexion from "./composents/button_connexion";
 import canardCoincoin from "./assets/coincoin.mp3";
+import AllNft from "./composents/all.json"
 
 import { useState, useEffect } from "react";
 import CoinCoin from "./artifacts/contracts/coincoinNFT.sol/coincoinNFT_tmp.json";
 import getWeb3 from "./web3";
 import Inventory from "./composents/Inventory";
+import NftCard from "./composents/NftCard";
+
+interface NftItem {
+  name: string;
+  speed: number;
+}
+
 
 function App() {
+  const [generatedItems, setGeneratedItems] = useState<NftItem[]>([]);
   const [isLogoEnlarged, setIsLogoEnlarged] = useState(false);
   const [haveMetamask, sethaveMetamask] = useState(true);
   const [accountAddress, setAccountAddress] = useState("");
@@ -21,15 +30,56 @@ function App() {
   const [methods, setMethods] = useState<any>();
   const [isMutted, setIsMutted] = useState(false);
   const [clickCount, setClickCount] = useState(0);
-  const [multiplicateur, setMultiplicateur] = useState(0.1);
-  const [balance, setBalance] = useState(0);
+  let myClick = 0.1;
+  const additionnalClick = generatedItems.reduce((total, item) => total + item.speed, 0);
+  let totalClick = myClick + additionnalClick;
+  if (totalClick < 0.1) {
+    totalClick = 0.1;
+  }
+  let mintPrice = 1;
+  let mintMultiplier = generatedItems.length;
+  let totalMintPrice = (mintPrice * ((105 * mintMultiplier) / 100));
+  if (totalMintPrice < mintPrice) {
+    totalMintPrice = mintPrice;
+  }
 
-  const resetClickCount = () => {
-    setClickCount(clickCount - 1000);
-    mintCoinCoin(1000);
+  console.log("🚀 ~ file: App.tsx:36 ~ App ~ totalClick:", totalClick)
+  const [multiplicateur, setMultiplicateur] = useState(totalClick);
+
+
+  const generateRandomNumber = (): NftItem => {
+    const randomNumber = Math.floor(Math.random() * 100); // Generate a random number between 0 and 99
+
+    if (randomNumber < 1) {
+      return AllNft[6]; // 1% chance of getting "Plongée"
+    } else if (randomNumber < 5) {
+      return AllNft[5]; // 4% chance of getting "Vol"
+    } else if (randomNumber < 12) {
+      return AllNft[3]; // 7% chance of getting "Cannetons"
+    } else if (randomNumber < 23) {
+      return AllNft[2]; // 11% chance of getting "Renard"
+    } else if (randomNumber < 35) {
+      return AllNft[1]; // 12% chance of getting "Mare"
+    } else if (randomNumber < 50) {
+      return AllNft[4]; // 15% chance of getting "Oeufs"
+    } else {
+      return AllNft[0]; // 50% chance of getting "Blé"
+    }
   };
 
+  const resetClickCount = () => {
+    setClickCount(clickCount - totalMintPrice);
+    const numberOfItemsToGenerate = 1; // You can change this number based on your requirement
+    const newItems = Array.from({ length: numberOfItemsToGenerate }, () => generateRandomNumber());
+    console.log(newItems);
+    // Concatenate newly generated items with existing items and set the state
+    setGeneratedItems(prevItems => [...prevItems, ...newItems]);
+  };
+
+
+
   useEffect(() => {
+
     const checkMetamask = async () => {
       if (window.ethereum) {
         try {
@@ -92,24 +142,24 @@ function App() {
     if (!isMutted) {
       audio.play();
     }
-    setClickCount(clickCount + multiplicateur);
+    setClickCount(clickCount + totalClick);
   };
 
-  
+
   async function getBalance(id: number) {
     const result = await methods.balanceOf(account[0], id).call();
     console.log(account[0], id)
     console.log(`Balance of ${id}: ${result}`);
     return result;
   }
-  
+
   async function getMintPrice() {
     const result = await methods.price().call();
     console.log(result);
   }
 
   async function mintCoinCoin(amount: number) {
-    const result = await methods.mintCoinCoin(account[0], amount).send({from: account[0]});
+    const result = await methods.mintCoinCoin(account[0], amount).send({ from: account[0] });
   }
 
   const backgroundStyle = {
@@ -130,10 +180,15 @@ function App() {
     <div style={backgroundStyle}>
       <header className="App-header">
         <img src={logo} style={logoStyle} alt="logo" onClick={toggleLogoSize} />
+
         <h1 className="text-3xl font-bold shadow-2xl absolute top-5 left-1/2 transform -translate-x-1/2">
           {" "}
-          Click on Ducky ! {balance}
+          Click on Ducky !
         </h1>
+        <div className="text-3xl font-bold shadow-2xl absolute left-1/2 top-16 transform -translate-x-1/2">
+          Nombre de CoinCoin par clic : {Math.floor(totalClick * 10) / 10}
+        </div>
+
         <button
           className="bg-white text-black text-sm py-1 px-2 rounded inline-block absolute bottom-4 left-4"
           onClick={() => setIsMutted((prevState) => !prevState)}
@@ -163,25 +218,28 @@ function App() {
             MetaMask not detected.
           </div>
         )}
-        <Inventory />
-        {clickCount >= 1 ? (
-          <button
-            onClick={resetClickCount}
-            type="button"
-            className="text-black bg-orange-400 hover:bg-orange-500 font-bold rounded-lg text-lg px-12 py-2.5 text-center inline-flex items-center absolute m-4 mr-2 mb-2 bottom-16"
-          >
-            Mint
-          </button>
-        ) : (
-          <button
-            // onClick={console.log('Mint')}
-            type="button"
-            className="text-black bg-gray-400 font-bold rounded-lg text-lg px-12 py-2.5 text-center inline-flex items-center absolute m-4 mr-2 mb-2 bottom-16"
-          >
-            Mint
-          </button>
-        )
-        }
+        <Inventory items={generatedItems} />
+        {isConnected ? (
+          clickCount >= totalMintPrice ? (
+            <button
+              onClick={resetClickCount}
+              type="button"
+              className="text-black bg-orange-400 hover:bg-orange-500 font-bold rounded-lg text-lg px-12 py-2.5 text-center inline-flex items-center absolute m-4 mr-2 mb-2 bottom-16"
+            >
+              Mint - {totalMintPrice}
+            </button>
+          ) : (
+            <button
+              // onClick={console.log('Mint')}
+              type="button"
+              className="text-black bg-gray-400 font-bold rounded-lg text-lg px-12 py-2.5 text-center inline-flex items-center absolute m-4 mr-2 mb-2 bottom-16"
+            >
+              Mint - {totalMintPrice}
+            </button>
+          )
+        ) : null}
+
+
 
         <p className="text-white absolute bottom-4 left-1/2 transform -translate-x-1/2">
           Click Count: {Math.floor(clickCount * 10) / 10}
