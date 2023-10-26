@@ -21,7 +21,7 @@ function App() {
   const [methods, setMethods] = useState<any>();
   const [isMutted, setIsMutted] = useState(false);
   const [clickCount, setClickCount] = useState(0);
-  const [multiplicateur, setMultiplicateur] = useState(20);
+  const [multiplicateur, setMultiplicateur] = useState(0.1);
 
   const resetClickCount = () => {
     setClickCount(clickCount - 1000);
@@ -177,7 +177,7 @@ function App() {
         }
 
         <p className="text-white absolute bottom-4 left-1/2 transform -translate-x-1/2">
-          Click Count: {clickCount}
+          Click Count: {Math.floor(clickCount * 10) / 10}
         </p>
       </header>
     </div>
