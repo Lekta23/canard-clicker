@@ -1,27 +1,35 @@
-import { ethers } from "hardhat";
+import { ethers } from 'hardhat';
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  const deployer = await ethers.getSigner('0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199');
 
-  const lockedAmount = ethers.parseEther("0.001");
+  console.log(`Deploying the coincoinNTF_tmp contract with the address: ${deployer.address}`);
 
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
+  // Deploy the contract
+  const CoincoinNTF = await ethers.getContractFactory('coincoinNTF_tmp');
+  const coincoinNTF = await CoincoinNTF.deploy();
+  await mintInitialNFTs(coincoinNTF, deployer);
 
-  await lock.waitForDeployment();
+  // No need to use .deployed() here
 
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
-  );
+  console.log(`coincoinNTF_tmp contract deployed to address: ${await coincoinNTF.getAddress()}`);
+
+  async function mintInitialNFTs(coincoinNTF : any, deployer : any) {
+    // Mint initial NFTs to the deployer
+    const amountToMint = 1500; // Set the initial quantity to mint
+  
+    await coincoinNTF.mintCoinCoin(deployer.address, amountToMint);
+    console.log('this : ',await coincoinNTF.balanceOf(deployer.address, 8));
+  
+    console.log(`Minted initial NFTs to ${deployer.address}`);
+    console.log('count : ',await coincoinNTF.price());
+    
+  }
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
