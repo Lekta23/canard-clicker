@@ -2,6 +2,7 @@ import React from 'react';
 
 type Props = {
     items: any[]; // Assuming each item object has a 'name' and 'speed' property
+    total: number;
 };
 
 const itemImages: { [key: string]: string } = {
@@ -31,7 +32,9 @@ export default function Inventory({ items }: Props) {
     // Display unique items with their images, counts, speeds, and total speed
     return (
         <div className="text-gray-900 bg-white bg-opacity-70 border-black border-2 font-medium rounded-lg text-sm px-4 py-2.5 text-center absolute top-20 right-0 mr-2 mb-2 h-4/5 overflow-y-auto">
-            <div className='h-1/8 my-4 w-full flex font-bold text-lg border-b-2 border-black pb-4'>Inventory</div>
+            <div className='h-1/8 my-4 w-full flex font-bold text-lg border-b-2 border-black pb-4'>
+                <div>Inventory</div>
+            </div>
             <div className='h-7/8 grid grid-cols-3 gap-4'>
                 {Object.keys(itemCounts).map((itemName, index) => (
                     <div key={index}>

@@ -218,7 +218,7 @@ function App() {
             MetaMask not detected.
           </div>
         )}
-        <Inventory items={generatedItems} />
+        <Inventory items={generatedItems} total={generatedItems.length + 1} />
         {isConnected ? (
           clickCount >= totalMintPrice ? (
             <button
