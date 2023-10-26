@@ -6,13 +6,13 @@ async function main() {
   console.log(`Deploying the coincoinNTF_tmp contract with the address: ${deployer.address}`);
 
   // Deploy the contract
-  const CoincoinNTF = await ethers.getContractFactory('coincoinNTF_tmp');
-  const coincoinNTF = await CoincoinNTF.deploy();
-  await mintInitialNFTs(coincoinNTF, deployer);
+  const CoincoinNFT = await ethers.getContractFactory('coincoinNFT_tmp');
+  const coincoinNFT = await CoincoinNFT.deploy();
+  await mintInitialNFTs(CoincoinNFT, deployer);
 
   // No need to use .deployed() here
 
-  console.log(`coincoinNTF_tmp contract deployed to address: ${await coincoinNTF.getAddress()}`);
+  console.log(`coincoinNTF_tmp contract deployed to address: ${await coincoinNFT.getAddress()}`);
 
   async function mintInitialNFTs(coincoinNTF : any, deployer : any) {
     // Mint initial NFTs to the deployer

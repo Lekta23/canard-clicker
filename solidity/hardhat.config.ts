@@ -7,7 +7,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       chainId: 1337,
       accounts: {
-        mnemonic: "test test test test test test test test test test test junk", // test test test test test test test test test test test junk
+        mnemonic: "test test test test test test test test test test test junk" // test test test test test test test test test test test junk
       },
     },
     // hardhat: {
@@ -22,7 +22,7 @@ const config: HardhatUserConfig = {
   },
 
   paths: {
-    artifacts: "../src/artifacts",
+    artifacts: "../src/artifacts"
   }
 };
 
