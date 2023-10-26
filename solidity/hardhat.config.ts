@@ -20,6 +20,10 @@ const config: HardhatUserConfig = {
     //   ],
     // },
   },
+
+  paths: {
+    artifacts: "../src/artifacts",
+  }
 };
 
 export default config;

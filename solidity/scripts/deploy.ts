@@ -1,7 +1,7 @@
 import { ethers } from 'hardhat';
 
 async function main() {
-  const deployer = await ethers.getSigner('0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199');
+  const deployer = await ethers.getSigner('0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266');
 
   console.log(`Deploying the coincoinNTF_tmp contract with the address: ${deployer.address}`);
 
@@ -16,7 +16,7 @@ async function main() {
 
   async function mintInitialNFTs(coincoinNTF : any, deployer : any) {
     // Mint initial NFTs to the deployer
-    const amountToMint = 1500; // Set the initial quantity to mint
+    const amountToMint = 1500; // Set the initial quantity to mint&
   
     await coincoinNTF.mintCoinCoin(deployer.address, amountToMint);
     console.log('this : ',await coincoinNTF.balanceOf(deployer.address, 8));
