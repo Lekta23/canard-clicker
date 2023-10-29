@@ -94,18 +94,6 @@ function App() {
           if (accounts.length > 0) {
             setAccountAddress(accounts[0]);
             setIsConnected(true);
-            //console.log(accounts[0]);
-            const web3 = await getWeb3();
-            const account = await web3.eth.getAccounts();
-            const instance = new web3.eth.Contract(CoinCoin.abi, contractAddress);
-            //console.log(account);
-            setAccount(account);
-            setWeb3(web3);
-            setContract(instance);
-            setMethods(instance.methods);
-            setUserAddress(
-              account[0].slice(0, 6) + "..." + account[0].slice(38, 42)
-            );
           }
         } catch (error) {
           setIsConnected(false);
@@ -116,12 +104,15 @@ function App() {
     };
 
     checkMetamask();
-    if (methods !== undefined) {
+    if (isConnected) {
+      connectWallet();
+    }
+    if (methods !== undefined && isConnected) {
       getAllNft();
       getCoinCoinBalance();
       getMintPrice();
     }
-  }, []);
+  }, [methods, isConnected]);
   const connectWallet = async () => {
     try {
       const accounts = await window.ethereum.request({
@@ -129,6 +120,16 @@ function App() {
       });
       setAccountAddress(accounts[0]);
       setIsConnected(true);
+      const web3 = await getWeb3();
+      const account = await web3.eth.getAccounts();
+      const instance = new web3.eth.Contract(CoinCoin.abi, contractAddress);
+      setAccount(account);
+      setWeb3(web3);
+      setContract(instance);
+      setMethods(instance.methods);
+      setUserAddress(
+        account[0].slice(0, 6) + "..." + account[0].slice(38, 42)
+      );
     } catch (error) {
       setIsConnected(false);
     }
@@ -200,7 +201,6 @@ function App() {
   async function getMintPrice() {
     const result = await methods.price(accountAddress).call();
     setTotalMintPrice(result);
-    console.log(totalMintPrice);
     return result;
   }
 
