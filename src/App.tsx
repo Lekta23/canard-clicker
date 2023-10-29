@@ -130,10 +130,19 @@ function App() {
       setUserAddress(
         account[0].slice(0, 6) + "..." + account[0].slice(38, 42)
       );
+      console.log("Trop tard");
     } catch (error) {
       setIsConnected(false);
+      console.log(error);
     }
   };
+
+  async function buttonConnectWallet() {
+    connectWallet().then(() => {
+      window.location.reload();
+    });
+
+  }
 
   let audio = new Audio(canardCoincoin);
 
@@ -295,21 +304,23 @@ function App() {
             isConnected ? (
               <div
                 className="bg-white text-black text-sm py-2 px-4 rounded absolute top-0 right-0 m-4"
-                onClick={connectWallet}
+                onClick={buttonConnectWallet}
               >
                 {userAddress}
               </div>
             ) : (
-              <ButtonConnexion
-                label="Connect Wallet"
-                className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded absolute top-0 right-0 m-4"
-                onClick={connectWallet}
-              />
+              <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
+                <ButtonConnexion
+                  label="Connect Wallet"
+                  className=""
+                  onClick={buttonConnectWallet}
+                />
+                <p className="w-1/2 text-center text-white mt-20">Please refresh after login (F5).</p>
+              </div>
             )
           ) : (
             <div
-              className="bg-white text-black text-sm py-2 px-4 rounded absolute top-0 right-0 m-4"
-              onClick={connectWallet}
+              className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center"
             >
               MetaMask not detected.
             </div>
