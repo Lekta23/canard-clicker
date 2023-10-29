@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# CanardClicker - Application React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenue dans CanardClicker, une application React amusante qui vous permet de cliquer sur un canard pour gagner des tokens appelés "CoinCoin". Lorsque vous atteignez 1000 clicks, vous avez la chance de recevoir des NFT (jetons non fongibles) bonus ou malus de manière aléatoire.
 
-## Available Scripts
+## Prérequis
 
-In the project directory, you can run:
+Avant de commencer à utiliser CanardClicker, assurez-vous d'avoir Node.js installé sur votre système. Si ce n'est pas le cas, vous pouvez le télécharger depuis le site officiel : [Node.js](https://nodejs.org/).
 
-### `npm start`
+Vous aurez également besoin de MetaMask avec un compte de test Sepholia pour interagir avec les NFT.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Clonez ce dépôt sur votre ordinateur en utilisant la commande suivante :
 
-### `npm test`
+```bash
+git clone https://github.com/Lekta23/canard-clicker.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.Accédez au répertoire CanardClicker :
 
-### `npm run build`
+```bash
+cd canard-clicker
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3.Installez les dépendances nécessaires en exécutant la commande suivante :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Lancez l'application
 
-### `npm run eject`
+Pour exécuter l'application CanardClicker en local, suivez ces étapes :
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Exécutez la commande suivante pour démarrer l'application en mode développement :
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Ouvrez un navigateur web et accédez à l'URL suivante : http://localhost:3000
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Vous devriez maintenant voir l'interface de CanardClicker.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Comment jouer a CanardClicker
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Cliquez sur le canard pour accumuler des clicks.
+-Lorsque vous atteignez le nombre de clicks necessaire noté sur le bouton mint, pour pouvez mint pour avoir un objet bonus ou malus aléatoirement.
+- Attention le prix du mint augmente à chaque fois que vous des objets dans votre inventaire.
+- L'inventaire vous permet de voir les objets que vous avez mint. sur la droite de l'écran
+
+## Utilisation de MetaMask
+Pour interagir avec les NFT et gérer vos jetons CoinCoin, vous devrez avoir MetaMask installé avec un compte de test Sepholia. Si vous n'avez pas MetaMask, vous pouvez l'installer depuis 
+[le site officiel](https://metamask.io/).
+
+Veuillez configurer MetaMask avec un compte de test Sepholia pour profiter pleinement de l'expérience des NFT dans CanardClicker.
+
+Profitez de CanardClicker et amusez-vous à collecter des CoinCoin et à découvrir des NFT bonus ou malus avec votre compte de test Sepholia dans MetaMask. Si vous avez des questions ou des commentaires, n'hésitez pas à les partager avec nous. Amusez-vous bien ! 🦆🚀
