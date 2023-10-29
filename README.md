@@ -1,5 +1,7 @@
 # CanardClicker - Application React
 
+https://canard-clicker.vercel.app/
+
 Bienvenue dans CanardClicker, une application React amusante qui vous permet de cliquer sur un canard pour gagner des tokens appelés "CoinCoin". Lorsque vous atteignez un certains nombre de clicks, vous pouvez mint un NFT bonus ou malus aléatoirement. Vous pouvez également voir les NFT que vous avez mint dans votre inventaire.
 
 ## Prérequis
