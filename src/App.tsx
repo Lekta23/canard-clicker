@@ -35,7 +35,7 @@ function App() {
   const [coinCoin, setCoinCoin] = useState<any>();
   const [totalMintPrice, setTotalMintPrice] = useState<any>();
   const [loading, setLoading] = useState(false);
-  let myClick = 0.1;
+  let myClick = 2;
   const additionnalClick = generatedItems.reduce((total, item) => total + item.speed, 0);
   let totalClick = myClick + additionnalClick;
   if (totalClick < 0.1) {
