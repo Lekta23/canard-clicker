@@ -1,6 +1,6 @@
 # CanardClicker - Application React
 
-Bienvenue dans CanardClicker, une application React amusante qui vous permet de cliquer sur un canard pour gagner des tokens appelés "CoinCoin". Lorsque vous atteignez 1000 clicks, vous avez la chance de recevoir des NFT (jetons non fongibles) bonus ou malus de manière aléatoire.
+Bienvenue dans CanardClicker, une application React amusante qui vous permet de cliquer sur un canard pour gagner des tokens appelés "CoinCoin". Lorsque vous atteignez un certains nombre de clicks, vous pouvez mint un NFT bonus ou malus aléatoirement. Vous pouvez également voir les NFT que vous avez mint dans votre inventaire.
 
 ## Prérequis
 
@@ -55,5 +55,7 @@ Pour interagir avec les NFT et gérer vos jetons CoinCoin, vous devrez avoir Met
 [le site officiel](https://metamask.io/).
 
 Veuillez configurer MetaMask avec un compte de test Sepholia pour profiter pleinement de l'expérience des NFT dans CanardClicker.
+
+
 
 Profitez de CanardClicker et amusez-vous à collecter des CoinCoin et à découvrir des NFT bonus ou malus avec votre compte de test Sepholia dans MetaMask. Si vous avez des questions ou des commentaires, n'hésitez pas à les partager avec nous. Amusez-vous bien ! 🦆🚀
