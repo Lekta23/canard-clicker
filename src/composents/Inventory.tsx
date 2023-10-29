@@ -21,6 +21,7 @@ export default function Inventory({ items }: Props) {
     const itemCounts: { [key: string]: number } = {};
     const itemSpeeds: { [key: string]: number } = {};
 
+
     // Count occurrences of each item and accumulate speeds
     items.forEach((item: any) => {
         const itemName = item.name; // Replace with the actual property name if needed

@@ -46,21 +46,21 @@ contract coincoinNFT_tmp is ERC1155 {
     // Mint with coincoin 
     // Check si Plus de 1000 CoinCoin
     // Si oui, on mintRandom et burn 1000 CoinCoin
-    function mintBoost() public {
-        uint256 cost = price(); // Calcul du coût en coincoin
+    function mintBoost(address account) public {
+        uint256 cost = price(account); // Calcul du coût en coincoin
 
         // Vérification si l'expéditeur a suffisamment de jetons coincoin
-        require(balanceOf(msg.sender, coincoin) >= cost, "Not enough coincoin tokens");
+        require(balanceOf(account, coincoin) >= cost, "Not enough coincoin tokens");
 
         // Attribution d'un NFT aléatoire à l'adresse spécifiée
-        _mintRandom(msg.sender);
+        _mintRandom(account);
 
         // Brûler le coût en coincoin
-        _burn(msg.sender, coincoin, cost);
+        _burn(account, coincoin, cost);
     }
 
-    function price() view public returns (uint256) {
-        return (1000 * 0.5 * ((105 * _countNFTs(msg.sender))) / 100);
+    function price(address account) view public returns (uint256) {
+        return (1000 * 0.5 * ((105 * _countNFTs(account))) / 100);
     }
 
     // Count sum of nfts
